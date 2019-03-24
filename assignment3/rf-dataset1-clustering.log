@@ -1,0 +1,65 @@
+2019-03-23 13:25:31,748 - __main__ - INFO - Loading data
+2019-03-23 13:25:31,748 - __main__ - INFO - ----------
+2019-03-23 13:25:31,752 - loader - INFO - Processing diabetes Path: data/diabetes.csv, Dimensions: (768, 9)
+2019-03-23 13:25:31,764 - loader - INFO - Data Sample:
+      0    1   2   3    4     5      6   7  8
+0     6  148  72  35    0  33.6  0.627  50  1
+1     1   85  66  29    0  26.6  0.351  31  0
+2     8  183  64   0    0  23.3  0.672  32  1
+3     1   89  66  23   94  28.1  0.167  21  0
+4     0  137  40  35  168  43.1  2.288  33  1
+..   ..  ...  ..  ..  ...   ...    ...  .. ..
+763  10  101  76  48  180  32.9  0.171  63  0
+764   2  122  70  27    0  36.8  0.340  27  0
+765   5  121  72  23  112  26.2  0.245  30  0
+766   1  126  60   0    0  30.1  0.349  47  1
+767   1   93  70  31    0  30.4  0.315  23  0
+
+[768 rows x 9 columns]
+2019-03-23 13:25:31,764 - loader - INFO - Will pre-process data
+2019-03-23 13:25:31,764 - loader - INFO - Pulling features
+2019-03-23 13:25:31,765 - loader - INFO - Pulling classes
+2019-03-23 13:25:31,765 - loader - INFO - Feature dimensions: (768, 8)
+2019-03-23 13:25:31,765 - loader - INFO - Classes dimensions: (768,)
+2019-03-23 13:25:31,765 - loader - INFO - Class values: [0 1]
+2019-03-23 13:25:31,766 - loader - INFO - Class distribution: [500 268]
+2019-03-23 13:25:31,766 - loader - INFO - Class distribution (%): [65.10416667 34.89583333]
+2019-03-23 13:25:31,766 - loader - INFO - Sparse? False
+2019-03-23 13:25:31,766 - loader - INFO - Binary? True
+2019-03-23 13:25:31,766 - loader - INFO - Balanced? True
+2019-03-23 13:25:31,768 - __main__ - INFO - ----------
+2019-03-23 13:25:31,768 - __main__ - INFO - Running experiments
+2019-03-23 13:25:31,769 - __main__ - INFO - Running with dimension 4
+2019-03-23 13:25:31,769 - __main__ - INFO -  Details: ExperimentDetails(ds=<loader.Diabetes object at 0x115cb3668>, ds_name=diabetes, ds_readable_name=Diabetes, best_nn_params={'NN__activation': ['relu'], 'NN__alpha': [1.0], 'NN__hidden_layer_sizes': [(36, 36)], 'NN__learning_rate_init': [0.016]}, threads=-1, seed=420)
+2019-03-23 13:25:31,769 - experiments.base - INFO - Running clustering for RF with dim param 4
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 8 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   2 out of   5 | elapsed:    0.9s remaining:    1.4s
+[Parallel(n_jobs=-1)]: Done   3 out of   5 | elapsed:    0.9s remaining:    0.6s
+[Parallel(n_jobs=-1)]: Done   5 out of   5 | elapsed:    0.9s remaining:    0.0s
+Traceback (most recent call last):
+  File "run_experiment.py", line 153, in <module>
+    verbose, timings)
+  File "run_experiment.py", line 33, in run_experiment
+    exp.perform_cluster(dim)
+  File "/Users/simha/ml/CS-7641-assignments/assignment3/experiments/RF.py", line 80, in perform_cluster
+    gs, _ = self.gs_with_best_estimator(pipe, self._details.best_nn_params, type='ass1')
+  File "/Users/simha/ml/CS-7641-assignments/assignment3/experiments/base.py", line 75, in gs_with_best_estimator
+    gs.fit(self._details.ds.training_x, self._details.ds.training_y)
+  File "/Users/simha/.virtualenvs/ml_hw1/lib/python3.7/site-packages/sklearn/model_selection/_search.py", line 722, in fit
+    self._run_search(evaluate_candidates)
+  File "/Users/simha/.virtualenvs/ml_hw1/lib/python3.7/site-packages/sklearn/model_selection/_search.py", line 1191, in _run_search
+    evaluate_candidates(ParameterGrid(self.param_grid))
+  File "/Users/simha/.virtualenvs/ml_hw1/lib/python3.7/site-packages/sklearn/model_selection/_search.py", line 711, in evaluate_candidates
+    cv.split(X, y, groups)))
+  File "/Users/simha/.virtualenvs/ml_hw1/lib/python3.7/site-packages/sklearn/externals/joblib/parallel.py", line 996, in __call__
+    self.retrieve()
+  File "/Users/simha/.virtualenvs/ml_hw1/lib/python3.7/site-packages/sklearn/externals/joblib/parallel.py", line 899, in retrieve
+    self._output.extend(job.get(timeout=self.timeout))
+  File "/Users/simha/.virtualenvs/ml_hw1/lib/python3.7/site-packages/sklearn/externals/joblib/_parallel_backends.py", line 517, in wrap_future_result
+    return future.result(timeout=timeout)
+  File "/usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/lib/python3.7/concurrent/futures/_base.py", line 427, in result
+    self._condition.wait(timeout)
+  File "/usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/lib/python3.7/threading.py", line 296, in wait
+    waiter.acquire()
+KeyboardInterrupt
